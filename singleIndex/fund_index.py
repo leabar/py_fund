@@ -49,5 +49,5 @@ for res in results:
 
 #最后保存并命名这个Excel文件
 today = str(datetime.date.today())
-file = "./excel/" + indexName + "筛选结果" + today + ".xlsx"
+file = "/Users/libai/workspace/python3/fund/singleIndex/excel/" + indexName + "筛选结果" + today + ".xlsx"
 wb.save(file)

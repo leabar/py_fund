@@ -81,9 +81,9 @@ def getHyFund(hyName):
 
     # 最后保存并命名这个Excel文件
     today = str(datetime.date.today())
-    file = "./excel/" + hyName + "筛选结果" + today + ".xlsx"
+    file = "/Users/libai/workspace/python3/fund/hyIndex/excel/" + hyName + "筛选结果" + today + ".xlsx"
     wb.save(file)
 
 
 # 调用
-getHyFund("互联网")
+# getHyFund("消费")
