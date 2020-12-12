@@ -35,6 +35,7 @@ def getHyFund(hyName):
     sheet['L1'] = '同类平均跟踪误差'
     sheet['M1'] = '是否符合要求'
     sheet['N1'] = '跟踪指数'
+    sheet['O1'] = '成分股最大占比'
 
     n = 0
     i = 0
@@ -60,8 +61,9 @@ def getHyFund(hyName):
         d_url = "http://www.csindex.com.cn/zh-CN/indices/index-detail/" + indexCode
         r_detail = session.get(d_url)
         r_qz = r_detail.html.xpath("/html/body/div[4]/div/div[2]/table/tbody/tr[1]/td[4]")
-        if(float(r_qz[0].text) >= 20):
-            continue
+        weight = float(r_qz[0].text)
+        # if(float(r_qz[0].text) >= 20):
+        #     continue
 
         # 遍历每只指数，获取旗下的基金产品
         for i in info:
@@ -71,7 +73,7 @@ def getHyFund(hyName):
             # 把数据写入excel
             sheet.append(
                 [item['code'], item['name'], item['regDate'], item['type'], item['scale'], item['company'], item['c_scale'],
-                 item['fee1'], item['fee2'], item['fee3'], item['error_rate'], item['avg_rate'], item['ok'], indexName])
+                 item['fee1'], item['fee2'], item['fee3'], item['error_rate'], item['avg_rate'], item['ok'], indexName, weight])
 
             n = n + 1
             print("======" + item['code'] + "======" + str(n))
@@ -84,4 +86,4 @@ def getHyFund(hyName):
 
 
 # 调用
-getHyFund("医药")
+getHyFund("互联网")

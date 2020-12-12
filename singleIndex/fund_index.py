@@ -7,7 +7,7 @@ import fund_info
 import openpyxl
 import datetime
 
-indexName = "基本面50" # 中证500、上证50、沪深300、创业板指数、红利指数、中证红利
+indexName = "纳斯达克100指数" # 中证500、上证50、沪深300、创业板指数、红利指数、中证红利
 url = "http://www.csindex.com.cn/zh-CN/search/index-derivatives?index_name=" + indexName
 session = HTMLSession()
 r = session.get(url)
