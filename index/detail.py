@@ -1,14 +1,13 @@
 """
-获取基金的信息
+单只基金的详细信息
 """
-#!/usr/bin/python3
 
 from requests_html import HTMLSession
 import datetime
 import time
 
 # 基金信息：成立日期、规模、跟踪误差率、费率
-def getInfo(code):
+def getDetail(code):
     data = {'code': code, 'ok': 1}
 
     try:
@@ -16,10 +15,12 @@ def getInfo(code):
         session = HTMLSession()
         r1 = session.get(url)
 
-        # 名称、代码、( 名称中带有分级的剔除掉 )
+        # 名称、代码、( 名称中带有分级、细分的剔除掉 )
         name = r1.html.find("#bodydiv > div:nth-child(12) > div.r_cont.right > div.basic-new > div.bs_jz > div.col-left > h4 > a")
         data['name'] = name[0].text
         if "分级" in data['name']:
+            data['ok'] = 0
+        if "细分" in data['name']:
             data['ok'] = 0
 
         # 成立日期 (大于3年)
@@ -97,8 +98,10 @@ def getInfo(code):
         if(data['error_rate'] > data['avg_rate']):
             data['ok'] = 0
 
+        print("======" + code + "======1")
         return data
     except:
+        print("======" + code + "======0")
         return 0
 
-# print(getInfo("160119"))
+# print(getDetail("006756"))

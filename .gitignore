@@ -1,5 +1,7 @@
-# 行业指数基金Excel 文件
-hyindex/excel/*
+# 基金Excel 文件
+index/excel/*
+index/__pycache__/*
 
-# 宽基指数基金Excel文件
-singleIndex/excel/*
+.DS_Store
+
+__pycache__

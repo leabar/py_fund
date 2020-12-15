@@ -1,14 +1,13 @@
 """
-行业指数
+某个行业下所有的指数
 """
-from requests_html import HTMLSession
-import fund_index
-import openpyxl
-import datetime
 
+from requests_html import HTMLSession
+import exponent
+import openpyxl
 
 # 筛选行业指数基金
-def getHyFund(hyName):
+def getIndustryFund(hyName):
 
     url = "http://www.csindex.com.cn/zh-CN/search/indices?key=" + hyName
     session = HTMLSession()
@@ -37,7 +36,6 @@ def getHyFund(hyName):
     sheet['N1'] = '跟踪指数'
     sheet['O1'] = '成分股最大占比'
 
-    n = 0
     i = 0
     for res in results:
         arr = (res.text).split("\n")
@@ -53,7 +51,7 @@ def getHyFund(hyName):
             continue
 
         # 指数下的基金( 无基金的剔除 )
-        info = fund_index.getSingleIndex(indexName)
+        info = exponent.getSingleExponent(indexName)
         if(len(info) == 0):
             continue
 
@@ -66,24 +64,23 @@ def getHyFund(hyName):
         #     continue
 
         # 遍历每只指数，获取旗下的基金产品
-        for i in info:
+        for j in info:
             # 子集合
-            item = info[i]
+            item = info[j]
 
             # 把数据写入excel
             sheet.append(
-                [item['code'], item['name'], item['regDate'], item['type'], item['scale'], item['company'], item['c_scale'],
-                 item['fee1'], item['fee2'], item['fee3'], item['error_rate'], item['avg_rate'], item['ok'], indexName, weight])
-
-            n = n + 1
-            print("======" + item['code'] + "======" + str(n))
-
+                [
+                    item['code'], item['name'], item['regDate'], item['type'], item['scale'],
+                    item['company'], item['c_scale'], item['fee1'], item['fee2'], item['fee3'],
+                    item['error_rate'], item['avg_rate'], item['ok'], indexName, weight
+                ]
+            )
 
     # 最后保存并命名这个Excel文件
-    today = str(datetime.date.today())
-    file = "/Users/libai/workspace/python3/fund/hyIndex/excel/" + hyName + "筛选结果" + today + ".xlsx"
+    file = "/Users/libai/workspace/python3/fund/index/excel/指数集合_" + hyName + "_筛选结果.xlsx"
     wb.save(file)
 
 
 # 调用
-# getHyFund("消费")
+# getIndustryFund("消费")
