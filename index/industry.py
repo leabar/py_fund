@@ -51,7 +51,7 @@ def getIndustryFund(hyName):
             continue
 
         # 指数下的基金( 无基金的剔除 )
-        info = exponent.getSingleExponent(indexName)
+        info = exponent.getSingleExponent(indexName, 0)
         if(len(info) == 0):
             continue
 

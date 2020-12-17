@@ -6,7 +6,7 @@ from requests_html import HTMLSession
 import detail
 
 # 获取单个指数的基金
-def getSingleExponent(indexName, isSingle = 0):
+def getSingleExponent(indexName, isSingle = 0, aliasName = ''):
     url = "http://www.csindex.com.cn/zh-CN/search/index-derivatives?index_name=" + indexName
     session = HTMLSession()
     r = session.get(url)
@@ -68,7 +68,11 @@ def getSingleExponent(indexName, isSingle = 0):
             )
 
         # 最后保存并命名这个Excel文件
-        file = "/Users/libai/workspace/python3/fund/index/excel/单个指数_" + indexName + "_筛选结果.xlsx"
+        if(aliasName != ''):
+            f_name = aliasName
+        else:
+            f_name = indexName
+        file = "/Users/libai/workspace/python3/fund/index/excel/单个指数_" + f_name + "_筛选结果.xlsx"
         wb.save(file)
 
 
