@@ -78,7 +78,7 @@ def getIndustryFund(hyName):
             )
 
     # 最后保存并命名这个Excel文件
-    file = "/Users/libai/办公资料/基金训练营/基金进阶/筛选结果/指数集合_" + hyName + "_筛选结果.xlsx"
+    file = "/Users/libai/办公资料/基金训练营/筛选结果/指数集合_" + hyName + "_筛选结果.xlsx"
     wb.save(file)
 
 
