@@ -72,7 +72,7 @@ def getSingleExponent(indexName, isSingle = 0, aliasName = ''):
             f_name = aliasName
         else:
             f_name = indexName
-        file = "/Users/libai/workspace/python3/fund/index/excel/单个指数_" + f_name + "_筛选结果.xlsx"
+        file = "/Users/libai/办公资料/基金训练营/基金进阶/筛选结果/单个指数_" + f_name + "_筛选结果.xlsx"
         wb.save(file)
 
 
