@@ -1,7 +1,0 @@
-# 基金Excel 文件
-index/excel/*
-index/__pycache__/*
-
-.DS_Store
-
-__pycache__
