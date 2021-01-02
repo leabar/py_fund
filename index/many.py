@@ -45,7 +45,7 @@ def manyFund(list):
         )
 
     # 最后保存并命名这个Excel文件
-    file = "/Users/libai/workspace/python3/fund/index/excel/多只基金筛选结果_" + today + ".xlsx"
+    file = "/Users/libai/办公资料/基金训练营/筛选结果/多只基金筛选结果_" + today + ".xlsx"
     wb.save(file)
 
 
